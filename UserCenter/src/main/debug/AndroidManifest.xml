@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name="com.lc.base.common.BaseApplication"
         android:allowBackup="true"
         android:label="UserCenter"
         android:supportsRtl="true"
