@@ -1,4 +1,4 @@
-package com.lc.base.ui.activity
+package com.lc.base.ui.fragment
 
 import android.os.Bundle
 import com.lc.base.common.BaseApplication
@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * Created by LiangCheng on 2017/12/19.
  */
-open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
     override fun hideLoading() {
     }
 
@@ -43,8 +43,8 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
 
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder().appComponent(
-                (application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+                (activity.application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(activity))
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }

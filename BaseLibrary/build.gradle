@@ -13,6 +13,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
 
     buildTypes {
@@ -48,5 +53,8 @@ dependencies {
     //Dagger2
     compile "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //RxLifecycle
+    compile "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
+    compile "com.trello:rxlifecycle-components:$rx_lifecycle_version"
 
 }
