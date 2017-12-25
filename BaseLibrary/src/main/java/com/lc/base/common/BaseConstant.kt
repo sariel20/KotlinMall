@@ -6,5 +6,7 @@ package com.lc.base.common
 class BaseConstant {
     companion object {
         val SERVER_ADDRESS = "http://192.168.1.115:8080/"
+
+        const val TABLE_PREFS = "Kotlin_mall"
     }
 }
