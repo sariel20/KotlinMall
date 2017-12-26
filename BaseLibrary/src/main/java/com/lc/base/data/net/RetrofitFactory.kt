@@ -52,8 +52,8 @@ class RetrofitFactory private constructor() {
         return OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .addInterceptor(initLogInterceptor()) //日志拦截器
-                .connectTimeout(10, TimeUnit.SECONDS) //超时
-                .readTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS) //超时
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build()
     }
 

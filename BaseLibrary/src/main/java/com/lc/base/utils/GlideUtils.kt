@@ -12,6 +12,7 @@ import com.lc.base.R
     Glide工具类
  */
 object GlideUtils {
+
     fun loadImage(context: Context, url: String, imageView: ImageView) {
         Glide.with(context).load(url).centerCrop().into(imageView)
     }
