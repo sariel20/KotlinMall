@@ -1,5 +1,6 @@
 package com.lc.user.data.repository
 
+import com.kotlin.user.data.protocol.EditUserReq
 import com.lc.base.data.net.RetrofitFactory
 import com.lc.base.data.protocol.BaseResp
 import com.lc.user.data.api.UserApi
@@ -29,5 +30,10 @@ class UserRepository @Inject constructor() {
     fun resetPwd(mobile: String, pwd: String): Observable<BaseResp<String>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .resetPwd(ResetPwdReq(mobile, pwd))
+    }
+
+    fun editUser(userIcon: String, userName: String, userGender: String, userSign: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .editUser(EditUserReq(userIcon, userName, userGender, userSign))
     }
 }

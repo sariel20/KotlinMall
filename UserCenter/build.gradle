@@ -57,6 +57,8 @@ dependencies {
     //Dagger2
     compile "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    implementation files('libs/qiniu-android-sdk-7.3.10.jar')
 }
 repositories {
     mavenCentral()

@@ -1,6 +1,7 @@
 package com.lc.base.data.net
 
 import com.lc.base.common.BaseConstant
+import com.lc.base.utils.AppPrefsUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,6 +28,7 @@ class RetrofitFactory private constructor() {
                     .newBuilder()
                     .addHeader("Content-Type", "application/json")
                     .addHeader("charset", "utf-8")
+                    .addHeader("token", AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN))
                     .build()
             chain.proceed(request)
 

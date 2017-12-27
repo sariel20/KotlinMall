@@ -1,5 +1,6 @@
 package com.lc.user.data.api
 
+import com.kotlin.user.data.protocol.EditUserReq
 import com.lc.base.data.protocol.BaseResp
 import com.lc.user.data.protocol.*
 import retrofit2.http.Body
@@ -21,5 +22,8 @@ interface UserApi {
 
     @POST("userCenter/resetPwd")
     fun resetPwd(@Body req: ResetPwdReq): Observable<BaseResp<String>>
+
+    @POST("userCenter/editUser")
+    fun editUser(@Body req: EditUserReq): Observable<BaseResp<UserInfo>>
 
 }

@@ -3,6 +3,7 @@ package com.lc.user.presenter
 import com.lc.base.ext.execute
 import com.lc.base.presenter.BasePresenter
 import com.lc.base.rx.BaseSubscriber
+import com.lc.user.data.protocol.UserInfo
 import com.lc.user.presenter.view.UserInfoView
 import com.lc.user.service.UploadService
 import com.lc.user.service.UserService
@@ -27,5 +28,17 @@ class UserInfoPresenter @Inject constructor() : BasePresenter<UserInfoView>() {
                 mView.onGetUploadTokenResult(t)
             }
         }, lifecycleProvider)
+    }
+
+    fun editUser(userIcon: String, userName: String, userGender: String, userSign: String) {
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        userInfoService.editUser(userIcon, userName, userGender, userSign)
+                .execute(object : BaseSubscriber<UserInfo>(mView) {
+                    override fun onNext(t: UserInfo) {
+                    }
+                }, lifecycleProvider)
     }
 }
