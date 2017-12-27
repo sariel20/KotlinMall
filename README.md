@@ -18,3 +18,20 @@
    ### //RxLifecycle
    #### compile "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
    #### compile "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+   ### //Glide
+   #### compile "com.github.bumptech.glide:glide:$glide_version"
+   #### compile "de.hdodenhof:circleimageview:${circle_imageView_version}"
+   ### //Take Photo
+   #### compile "com.jph.takephoto:takephoto_library:${take_photo_version}"
+   ### //Alert View
+   #### compile "com.bigkoo:alertview:${alert_view_version}"
+   ### //底部导航
+   #### compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+   ### //轮播
+   #### compile 'com.youth.banner:banner:1.4.10'
+   ### //MulitStateView
+   #### compile "com.github.Kennyc1012:MultiStateView:$multi_state_view_version"
+   ### //TriangleLabelView
+   #### compile 'com.github.shts:TriangleLabelView:1.1.2'
+   ### //画廊效果
+   #### compile 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
