@@ -3,6 +3,7 @@
               style="@style/MatchMatch.Vertical">
 
     <LinearLayout
+        android:id="@+id/mUserLogin"
         android:layout_width="match_parent"
         android:layout_height="150.0dip"
         android:background="@drawable/bg_me_header"

@@ -29,7 +29,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     override fun onLoginResult(result: UserInfo) {
         //存储用户数据
         UserPrefsUtils.putUserInfo(result)
-        startActivity<UserInfoActivity>()
+       finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
