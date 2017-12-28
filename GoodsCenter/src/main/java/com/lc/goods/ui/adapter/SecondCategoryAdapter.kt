@@ -1,18 +1,15 @@
 package com.lc.goods.ui.adapter
 
 import android.content.Context
-import android.graphics.Paint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.GlideUtils
 import com.lc.base.ext.loadUrl
 import com.lc.goods.R
 import com.lc.goods.data.protocol.Category
 import kotlinx.android.synthetic.main.layout_second_category_item.view.*
-import kotlinx.android.synthetic.main.layout_top_category_item.view.*
 
 /**
  * Created by LiangCheng on 2017/12/27.

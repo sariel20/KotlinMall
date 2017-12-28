@@ -5,8 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.lc.base.ext.onClick
 import com.lc.base.ui.fragment.BaseFragment
 import com.lc.base.widgets.BannerImageLoader
+import com.lc.goods.ui.activity.SearchGoodsActivity
 import com.lc.mall.R
 import com.lc.mall.common.*
 import com.lc.mall.ui.adapter.HomeDiscountAdapter
@@ -15,11 +17,12 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by LiangCheng on 2017/12/27.
  */
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -29,10 +32,15 @@ class HomeFragment : BaseFragment() {
     //onCreateView渲染完成后需在此方法中获取视图，否则调用不到视图id
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initBanner()
         initNews()
         initDiscount()
         initTopic()
+    }
+
+    private fun initView() {
+        mSearchEt.onClick(this)
     }
 
     private fun initBanner() {
@@ -71,5 +79,12 @@ class HomeFragment : BaseFragment() {
 
         CoverFlow.Builder().with(mTopicPager).scale(0.3f).pagerMargin(-30.0f)
                 .spaceSize(0.0f).build()
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.mSearchEt ->
+                startActivity<SearchGoodsActivity>()
+        }
     }
 }

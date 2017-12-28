@@ -2,10 +2,12 @@ package com.lc.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.kotlin.user.utils.UserPrefsUtils
 import com.lc.base.ext.enable
 import com.lc.base.ext.onClick
 import com.lc.base.ui.activity.BaseMvpActivity
+import com.lc.provider.router.RouterPath
 import com.lc.user.R
 import com.lc.user.data.protocol.UserInfo
 import com.lc.user.injection.component.DaggerUserComponent
@@ -18,6 +20,7 @@ import org.jetbrains.anko.startActivity
 /**
  * 登录
  */
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
     override fun injectComponent() {
@@ -29,7 +32,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     override fun onLoginResult(result: UserInfo) {
         //存储用户数据
         UserPrefsUtils.putUserInfo(result)
-       finish()
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

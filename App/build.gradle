@@ -31,6 +31,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(':Provider')
     compile project(':MessageCenter')
+    compile project(':GoodsCenter')
     if(isUserModule.toBoolean()){
         compile project(':UserCenter')
     }
