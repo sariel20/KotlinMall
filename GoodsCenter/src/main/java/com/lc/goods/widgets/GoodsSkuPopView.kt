@@ -18,6 +18,7 @@ import com.lc.goods.data.protocol.GoodsSku
 import com.lc.goods.event.AddCartEvent
 import com.lc.goods.event.SkuChangedEvent
 import com.lc.goods.getEditText
+import com.lc.provider.common.afterLogin
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
 
 /*
@@ -71,7 +72,7 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
 
         mRootView.mSkuCountBtn.setCurrentNumber(1)
         mRootView.mSkuCountBtn.getEditText().addTextChangedListener(
-                object :DefaultTextWatcher(){
+                object : DefaultTextWatcher() {
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                         Bus.send(SkuChangedEvent())
                     }
@@ -79,7 +80,8 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
         )
 
         mRootView.mAddCartBtn.onClick {
-            Bus.send(AddCartEvent())
+            /*判断是否登录*/
+            afterLogin { Bus.send(AddCartEvent()) }
             dismiss()
         }
     }
@@ -95,7 +97,7 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
         设置商品价格
      */
     fun setGoodsPrice(text: Long) {
-        mRootView.mGoodsPriceTv.text = YuanFenConverter.changeF2YWithUnit(text)
+        mRootView.mGoodsPricePopTv.text = YuanFenConverter.changeF2YWithUnit(text)
     }
 
     /*
@@ -114,7 +116,7 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
             skuView.setSkuData(goodSku)
 
             mSkuViewList.add(skuView)
-            mRootView.mSkuView.addView(skuView)
+            mRootView.mSkuPopView.addView(skuView)
         }
     }
 

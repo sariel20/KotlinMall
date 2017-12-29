@@ -32,7 +32,7 @@
             android:textSize="@dimen/text_small_size"/>
 
         <TextView
-            android:id="@+id/mGoodsPriceTv"
+            android:id="@+id/mGoodsPricePopTv"
             style="@style/WrapWrap"
             android:layout_above="@id/mGoodsCodeTv"
             android:layout_alignLeft="@id/mGoodsCodeTv"
@@ -45,7 +45,7 @@
             android:layout_below="@id/mGoodsIconIv"/>
 
         <LinearLayout
-            android:id="@+id/mSkuView"
+            android:id="@+id/mSkuPopView"
             style="@style/MatchWrap.Vertical"
             android:layout_below="@id/mDividerView"
             android:layout_margin="@dimen/common_margin"/>
@@ -53,8 +53,8 @@
         <RelativeLayout
             android:id="@+id/rl_sku_amount"
             style="@style/MatchWrap"
-            android:layout_alignLeft="@id/mSkuView"
-            android:layout_below="@id/mSkuView">
+            android:layout_alignLeft="@id/mSkuPopView"
+            android:layout_below="@id/mSkuPopView">
 
             <TextView
                 style="@style/WrapWrap"

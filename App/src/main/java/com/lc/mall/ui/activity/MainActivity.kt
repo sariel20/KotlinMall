@@ -3,7 +3,13 @@ package com.lc.mall.ui.activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.lc.base.ui.activity.BaseActivity
+import com.lc.base.utils.AppPrefsUtils
+import com.lc.goods.common.GoodsConstant
+import com.lc.goods.event.UpdateCartSizeEvent
+import com.lc.goods.ui.fragment.CartFragment
 import com.lc.goods.ui.fragment.CategoryFragment
 import com.lc.mall.R
 import com.lc.mall.ui.fragment.HomeFragment
@@ -16,7 +22,7 @@ class MainActivity : BaseActivity() {
     private val mStack = Stack<Fragment>()
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
-    private val mCartFragment by lazy { HomeFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     private val mMsgFragment by lazy { HomeFragment() }
     private val mMeFragment by lazy { MeFragment() }
 
@@ -24,13 +30,33 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mBottomNavBar.checkCartBadge(0)
         mBottomNavBar.checkMsgBadge(false)
 
         initFragment()
         initBottomNav()
 
         changeFragment(0)
+
+        initObserver()
+
+        loadCartSize()
+    }
+
+    /*监听加入购物车后更新红点*/
+    private fun initObserver() {
+        Bus.observe<UpdateCartSizeEvent>()
+                .subscribe {
+                    loadCartSize()
+                }.registerInBus(this)
+    }
+
+    private fun loadCartSize() {
+        mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 
     private fun initFragment() {

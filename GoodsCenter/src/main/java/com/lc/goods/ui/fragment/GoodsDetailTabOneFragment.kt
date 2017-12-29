@@ -17,8 +17,10 @@ import com.lc.base.widgets.BannerImageLoader
 import com.lc.goods.R
 import com.lc.goods.common.GoodsConstant
 import com.lc.goods.data.protocol.Goods
+import com.lc.goods.event.AddCartEvent
 import com.lc.goods.event.GoodsDetailImageEvent
 import com.lc.goods.event.SkuChangedEvent
+import com.lc.goods.event.UpdateCartSizeEvent
 import com.lc.goods.injection.component.DaggerGoodsComponent
 import com.lc.goods.injection.module.GoodsModule
 import com.lc.goods.presenter.GoodsDetailPresenter
@@ -37,6 +39,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     private lateinit var mAnimationStart: Animation
     //SKU弹层退场动画
     private lateinit var mAnimationEnd: Animation
+
+    private var cartGoods: Goods? = null
 
     override fun injectComponent() {
         DaggerGoodsComponent.builder().activityComponent(activityComponent)
@@ -102,6 +106,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
     /*显示详情数据*/
     override fun onGetGoodsDetailResult(result: Goods) {
+        cartGoods = result
+
         mGoodsDetailBanner.setImages(result.goodsBanner.split(","))
         mGoodsDetailBanner.start()
 
@@ -124,8 +130,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mSkuPop.setSkuData(result.goodsSku)
     }
 
-    /*监听弹框sku、数量变更*/
     private fun initObserver() {
+        /*监听弹框sku、数量变更*/
         Bus.observe<SkuChangedEvent>()
                 .subscribe {
                     mSkuSelectedTv.text = mSkuPop.getSelectSku() +
@@ -133,10 +139,32 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
                             mSkuPop.getSelectCount() +
                             "件"
                 }.registerInBus(this)
+
+        Bus.observe<AddCartEvent>()
+                .subscribe {
+                    addCart()
+                }.registerInBus(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
+    }
+
+    /*添加购物车*/
+    private fun addCart() {
+        cartGoods?.let {
+            mPresenter.addCart(it.id,
+                    it.goodsDesc,
+                    it.goodsDefaultIcon,
+                    it.goodsDefaultPrice,
+                    mSkuPop.getSelectCount(),
+                    mSkuPop.getSelectSku())
+        }
+    }
+
+    /*添加购物车回调*/
+    override fun onAddCartResult(result: Int) {
+        Bus.send(UpdateCartSizeEvent())
     }
 }
