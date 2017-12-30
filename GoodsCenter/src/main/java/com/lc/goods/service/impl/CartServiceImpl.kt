@@ -1,6 +1,7 @@
 package com.lc.goods.service.impl
 
 import com.lc.base.ext.convert
+import com.lc.base.ext.convertBoolean
 import com.lc.goods.data.protocol.CartGoods
 import com.lc.goods.data.repository.CartRepository
 import com.lc.goods.service.CartService
@@ -21,6 +22,14 @@ class CartServiceImpl @Inject constructor() : CartService {
 
     override fun getCartList(): Observable<MutableList<CartGoods>?> {
         return repository.getCartList().convert()
+    }
+
+    override fun deleteCartList(list: List<Int>): Observable<Boolean> {
+        return repository.deleteCartList(list).convertBoolean()
+    }
+
+    override fun submitCart(list: MutableList<CartGoods>, totalPrice: Long): Observable<Int> {
+        return repository.submitCart(list, totalPrice).convert()
     }
 
 }

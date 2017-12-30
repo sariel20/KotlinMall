@@ -11,6 +11,7 @@
       <module fileurl="file://C:\Android_Project\KotlinMall\KotlinMall.iml" filepath="C:\Android_Project\KotlinMall\KotlinMall.iml" />
       <module fileurl="file://$PROJECT_DIR$/MessageCenter/MessageCenter.iml" filepath="$PROJECT_DIR$/MessageCenter/MessageCenter.iml" />
       <module fileurl="file://C:\Android_Project\KotlinMall\MessageCenter\MessageCenter.iml" filepath="C:\Android_Project\KotlinMall\MessageCenter\MessageCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrderCenter/OrderCenter.iml" filepath="$PROJECT_DIR$/OrderCenter/OrderCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/Provider/Provider.iml" filepath="$PROJECT_DIR$/Provider/Provider.iml" />
       <module fileurl="file://C:\Android_Project\KotlinMall\Provider\Provider.iml" filepath="C:\Android_Project\KotlinMall\Provider\Provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserCenter/UserCenter.iml" filepath="$PROJECT_DIR$/UserCenter/UserCenter.iml" />

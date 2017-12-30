@@ -16,6 +16,7 @@ import com.lc.goods.event.UpdateCartSizeEvent
 import com.lc.goods.ui.adapter.GoodsDetailVpAdapter
 import com.lc.provider.common.afterLogin
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.startActivity
 import q.rorbin.badgeview.QBadgeView
 
 /**
@@ -53,6 +54,9 @@ class GoodsDetailActivity : BaseActivity(), View.OnClickListener {
         mAddCartBtn.onClick(this)
 
         mCartBadge = QBadgeView(this)
+        mEnterCartTv.onClick{
+            startActivity<CartActivity>()
+        }
     }
 
     override fun onClick(v: View) {
