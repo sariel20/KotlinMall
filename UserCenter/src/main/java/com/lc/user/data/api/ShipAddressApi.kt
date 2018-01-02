@@ -3,10 +3,10 @@ package com.lc.user.data.api
 import retrofit2.http.POST
 import rx.Observable
 import com.lc.base.data.protocol.BaseResp
+import com.lc.order.data.protocol.ShipAddress
 import com.lc.user.data.protocol.AddShipAddressReq
 import com.lc.user.data.protocol.DeleteShipAddressReq
 import com.lc.user.data.protocol.EditShipAddressReq
-import com.lc.user.data.protocol.ShipAddress
 import retrofit2.http.Body
 
 

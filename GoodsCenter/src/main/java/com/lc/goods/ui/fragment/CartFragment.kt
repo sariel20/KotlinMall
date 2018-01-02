@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
@@ -26,6 +27,8 @@ import com.lc.goods.injection.module.CartModule
 import com.lc.goods.presenter.CartListPresenter
 import com.lc.goods.presenter.view.CartListView
 import com.lc.goods.ui.adapter.CartGoodsAdapter
+import com.lc.provider.common.ProviderConstant
+import com.lc.provider.router.RouterPath
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.jetbrains.anko.support.v4.toast
 
@@ -201,8 +204,8 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView, View.On
     }
 
     /*提交购物车回调*/
-    override fun onSubmipCartResult(result: Int?) {
-        toast("提交成功")
+    override fun onSubmipCartResult(result: Int) {
+        ARouter.getInstance().build(RouterPath.UserCenter.PATH_ORDER).withInt(ProviderConstant.KEY_ORDER_ID, result).navigation()
     }
 
     /*暴露左侧回退按钮方法，供cartActivity使用*/

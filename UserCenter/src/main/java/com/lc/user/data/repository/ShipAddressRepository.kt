@@ -2,11 +2,11 @@ package com.lc.user.data.repository
 
 import com.lc.base.data.net.RetrofitFactory
 import com.lc.base.data.protocol.BaseResp
+import com.lc.order.data.protocol.ShipAddress
 import com.lc.user.data.api.ShipAddressApi
 import com.lc.user.data.protocol.AddShipAddressReq
 import com.lc.user.data.protocol.DeleteShipAddressReq
 import com.lc.user.data.protocol.EditShipAddressReq
-import com.lc.user.data.protocol.ShipAddress
 import rx.Observable
 import javax.inject.Inject
 

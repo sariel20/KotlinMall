@@ -7,7 +7,7 @@ object RouterPath {
     class UserCenter {
         companion object {
             const val PATH_LOGIN = "/userCenter/login"
+            const val PATH_ORDER = "/userCenter/order"
         }
     }
-
 }

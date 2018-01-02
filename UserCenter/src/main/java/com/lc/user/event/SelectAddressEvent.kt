@@ -1,6 +1,6 @@
 package com.lc.user.event
 
-import com.lc.user.data.protocol.ShipAddress
+import com.lc.order.data.protocol.ShipAddress
 
 
 /*

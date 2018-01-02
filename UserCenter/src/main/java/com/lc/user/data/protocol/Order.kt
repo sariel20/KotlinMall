@@ -1,5 +1,7 @@
 package com.lc.user.data.protocol
 
+import com.lc.order.data.protocol.ShipAddress
+
 
 /*
     订单数据类
