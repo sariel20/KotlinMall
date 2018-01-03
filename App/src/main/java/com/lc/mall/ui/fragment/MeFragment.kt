@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.base.utils.GlideUtils
-import com.lc.base.common.BaseConstant
 import com.lc.base.ext.loadUrl
 import com.lc.base.ext.onClick
 import com.lc.base.ui.fragment.BaseFragment
@@ -15,6 +13,7 @@ import com.lc.mall.ui.activity.SettingActivity
 import com.lc.provider.common.ProviderConstant
 import com.lc.provider.common.isLogined
 import com.lc.user.ui.activity.LoginActivity
+import com.lc.user.ui.activity.ShipAddressActivity
 import com.lc.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_me.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -37,6 +36,7 @@ class MeFragment : BaseFragment(), View.OnClickListener {
     private fun initView() {
         mUserLogin.onClick(this)
         mSettingTv.onClick(this)
+        mAddressTv.onClick(this)
     }
 
     override fun onStart() {
@@ -68,6 +68,8 @@ class MeFragment : BaseFragment(), View.OnClickListener {
                     startActivity<UserInfoActivity>()
             R.id.mSettingTv ->
                 startActivity<SettingActivity>()
+            R.id.mAddressTv ->
+                startActivity<ShipAddressActivity>()
         }
     }
 

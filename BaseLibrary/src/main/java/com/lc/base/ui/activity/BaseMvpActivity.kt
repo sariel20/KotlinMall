@@ -1,6 +1,7 @@
 package com.lc.base.ui.activity
 
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
 import com.lc.base.common.BaseApplication
 import com.lc.base.injection.component.ActivityComponent
 import com.lc.base.injection.component.DaggerActivityComponent
@@ -44,6 +45,7 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
         injectComponent()
 
         mLoadingDialog = ProgressLoading.create(this)
+        ARouter.getInstance().inject(this)
     }
 
     //dagger2注册
