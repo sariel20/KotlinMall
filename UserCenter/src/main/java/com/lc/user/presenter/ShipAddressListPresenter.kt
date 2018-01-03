@@ -28,4 +28,29 @@ class ShipAddressListPresenter @Inject constructor() : BasePresenter<ShipAddress
                 }, lifecycleProvider)
     }
 
+    fun setDefaultShipAddress(shipAddress: ShipAddress) {
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        shipAddressService.editShipAddress(shipAddress)
+                .execute(object : BaseSubscriber<Boolean>(mView) {
+                    override fun onNext(t: Boolean) {
+                        mView.onSetDefaultResult(t)
+                    }
+                }, lifecycleProvider)
+    }
+
+    fun deleteShipAddress(id: Int) {
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        shipAddressService.deleteShipAddress(id)
+                .execute(object : BaseSubscriber<Boolean>(mView) {
+                    override fun onNext(t: Boolean) {
+                        mView.onDeleteAddressResult(t)
+                    }
+                }, lifecycleProvider)
+    }
 }

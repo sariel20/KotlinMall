@@ -8,4 +8,5 @@ import com.lc.base.presenter.view.BaseView
 interface EditShipAddressView : BaseView {
 
     fun onAddShipAddressdResult(result: Boolean)
+    fun onEditShipAddressdResult(result: Boolean)
 }

@@ -3,6 +3,7 @@ package com.lc.user.presenter
 import com.lc.base.ext.execute
 import com.lc.base.presenter.BasePresenter
 import com.lc.base.rx.BaseSubscriber
+import com.lc.order.data.protocol.ShipAddress
 import com.lc.user.presenter.view.EditShipAddressView
 import com.lc.user.service.ShipAddressService
 import javax.inject.Inject
@@ -23,6 +24,20 @@ class EditShipAddressPresenter @Inject constructor() : BasePresenter<EditShipAdd
                 .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {
                         mView.onAddShipAddressdResult(t)
+                    }
+                }, lifecycleProvider)
+
+    }
+
+    fun editShipAddress(shipAddress: ShipAddress) {
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        shipAddressService.editShipAddress(shipAddress)
+                .execute(object : BaseSubscriber<Boolean>(mView) {
+                    override fun onNext(t: Boolean) {
+                        mView.onEditShipAddressdResult(t)
                     }
                 }, lifecycleProvider)
 

@@ -9,4 +9,6 @@ import com.lc.order.data.protocol.ShipAddress
 interface ShipAddressListView : BaseView {
 
     fun onGetShipAddressdListResult(result: MutableList<ShipAddress>?)
+    fun onSetDefaultResult(result: Boolean)
+    fun onDeleteAddressResult(result: Boolean)
 }

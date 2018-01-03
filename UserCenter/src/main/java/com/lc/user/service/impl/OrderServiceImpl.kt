@@ -1,6 +1,7 @@
 package com.lc.user.service.impl
 
 import com.lc.base.ext.convert
+import com.lc.base.ext.convertBoolean
 import com.lc.user.data.protocol.Order
 import com.lc.user.data.repository.OrderRepository
 import com.lc.user.service.OrderService
@@ -17,6 +18,14 @@ class OrderServiceImpl @Inject constructor() : OrderService {
 
     override fun getOrderById(orderId: Int): Observable<Order> {
         return repository.getOrderById(orderId).convert()
+    }
+
+    override fun submitOrder(order: Order): Observable<Boolean> {
+        return repository.submitOrder(order).convertBoolean()
+    }
+
+    override fun getOrderList(orderStatus: Int): Observable<MutableList<Order>?> {
+        return repository.getOrderList(orderStatus).convert()
     }
 
 }
