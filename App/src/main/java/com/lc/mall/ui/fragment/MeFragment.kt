@@ -11,8 +11,11 @@ import com.lc.base.utils.AppPrefsUtils
 import com.lc.mall.R
 import com.lc.mall.ui.activity.SettingActivity
 import com.lc.provider.common.ProviderConstant
+import com.lc.provider.common.afterLogin
 import com.lc.provider.common.isLogined
-import com.lc.user.ui.activity.LoginActivity
+import com.lc.user.common.OrderConstant
+import com.lc.user.common.OrderStatus
+import com.lc.user.ui.activity.OrderActivity
 import com.lc.user.ui.activity.ShipAddressActivity
 import com.lc.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_me.*
@@ -37,6 +40,11 @@ class MeFragment : BaseFragment(), View.OnClickListener {
         mUserLogin.onClick(this)
         mSettingTv.onClick(this)
         mAddressTv.onClick(this)
+
+        mAllOrderTv.onClick(this)
+        mWaitPayOrderTv.onClick(this)
+        mWaitConfirmOrderTv.onClick(this)
+        mCompleteOrderTv.onClick(this)
     }
 
     override fun onStart() {
@@ -62,14 +70,41 @@ class MeFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.mUserLogin ->
-                if (isLogined())
-                    startActivity<LoginActivity>()
-                else
+                afterLogin {
                     startActivity<UserInfoActivity>()
+                }
             R.id.mSettingTv ->
                 startActivity<SettingActivity>()
             R.id.mAddressTv ->
                 startActivity<ShipAddressActivity>()
+        /*全部订单*/
+            R.id.mAllOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>()
+                }
+            }
+        /*待付款*/
+            R.id.mWaitPayOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(
+                            OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
+                }
+            }
+        /*待收货*/
+            R.id.mWaitConfirmOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(
+                            OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
+                }
+            }
+        /*已完成*/
+            R.id.mCompleteOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(
+                            OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
+                }
+            }
+
         }
     }
 

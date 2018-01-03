@@ -53,9 +53,15 @@ class HeaderBar @JvmOverloads constructor(
             }
         }
     }
+
+    fun getTitleView(): TextView {
+        return mTitleTv
+    }
+
     fun getLeftView(): ImageView {
         return mLeftIv
     }
+
     fun getRightView(): TextView {
         return mRightTv
     }
