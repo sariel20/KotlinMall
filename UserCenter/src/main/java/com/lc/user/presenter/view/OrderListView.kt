@@ -9,4 +9,6 @@ import com.lc.user.data.protocol.Order
 interface OrderListView : BaseView {
 
     fun onGetOrderListResult(result: MutableList<Order>?)
+    fun onConfirmOrderResult(result: Boolean)
+    fun onCancelOrderResult(result: Boolean)
 }

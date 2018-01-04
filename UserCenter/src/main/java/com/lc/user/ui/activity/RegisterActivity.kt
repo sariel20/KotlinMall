@@ -33,6 +33,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
      */
     override fun onRegisterResult(result: String) {
         toast(result)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

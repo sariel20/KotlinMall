@@ -4,6 +4,7 @@ import com.lc.base.injection.PerComponentScope
 import com.lc.base.injection.component.ActivityComponent
 import com.lc.user.injection.module.OrderModule
 import com.lc.user.ui.activity.OrderConfirmActivity
+import com.lc.user.ui.activity.OrderDetailActivity
 import com.lc.user.ui.fragment.OrderFragment
 import dagger.Component
 
@@ -15,5 +16,6 @@ import dagger.Component
         , modules = arrayOf(OrderModule::class))
 interface OrderComponent {
     fun inject(activity: OrderConfirmActivity)
+    fun inject(activity: OrderDetailActivity)
     fun inject(fragment: OrderFragment)
 }

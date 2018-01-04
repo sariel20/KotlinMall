@@ -74,9 +74,14 @@ class MeFragment : BaseFragment(), View.OnClickListener {
                     startActivity<UserInfoActivity>()
                 }
             R.id.mSettingTv ->
-                startActivity<SettingActivity>()
+                afterLogin {
+                    startActivity<SettingActivity>()
+                }
             R.id.mAddressTv ->
-                startActivity<ShipAddressActivity>()
+                afterLogin {
+                    startActivity<ShipAddressActivity>()
+                }
+
         /*全部订单*/
             R.id.mAllOrderTv -> {
                 afterLogin {
