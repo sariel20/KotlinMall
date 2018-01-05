@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kotlin.base.utils.YuanFenConverter
@@ -123,6 +124,11 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
     /*提交订单回调*/
     override fun onSubmitOrderResult(result: Boolean) {
         toast("提交成功")
+        ARouter.getInstance().build(RouterPath.PaySDK.PATH_PAY)
+                .withInt(ProviderConstant.KEY_ORDER_ID, mCurrentOrder!!.id)
+                .withLong(ProviderConstant.KEY_ORDER_PRICE, mCurrentOrder!!.totalPrice)
+                .navigation()
+        finish()
     }
 
     override fun onClick(v: View) {

@@ -10,7 +10,7 @@ import com.lc.base.injection.module.AppModule
 /**
  * Created by LiangCheng on 2017/12/20.
  */
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
     lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()

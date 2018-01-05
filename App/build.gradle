@@ -13,6 +13,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId
+        ]
+
     }
     buildTypes {
         release {
@@ -32,6 +37,7 @@ dependencies {
     compile project(':Provider')
     compile project(':MessageCenter')
     compile project(':GoodsCenter')
+    compile project(':PaySDK')
     if(isUserModule.toBoolean()){
         compile project(':UserCenter')
     }

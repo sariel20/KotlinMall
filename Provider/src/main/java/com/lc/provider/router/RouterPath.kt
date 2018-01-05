@@ -10,4 +10,10 @@ object RouterPath {
             const val PATH_ORDER = "/userCenter/order"
         }
     }
+
+    class PaySDK {
+        companion object {
+            const val PATH_PAY = "/paySDK/pay"
+        }
+    }
 }

@@ -5,15 +5,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lc.base.ui.fragment.BaseMvpFragment
 import com.lc.provider.common.ProviderConstant
+import com.lc.provider.router.RouterPath
 import com.lc.user.R
 import com.lc.user.common.OrderConstant
-import com.lc.user.common.OrderStatus
 import com.lc.user.data.protocol.Order
 import com.lc.user.injection.component.DaggerOrderComponent
 import com.lc.user.injection.module.OrderModule
@@ -45,6 +46,10 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+    }
+
+    override fun onStart() {
+        super.onStart()
         loadData()
     }
 
@@ -62,6 +67,10 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
                     }
                 /*订单付款*/
                     OrderConstant.OPT_ORDER_PAY -> {
+                        ARouter.getInstance().build(RouterPath.PaySDK.PATH_PAY)
+                                .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
+                                .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
+                                .navigation()
                     }
                 /*取消订单*/
                     OrderConstant.OPT_ORDER_CANCEL -> {
