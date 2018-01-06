@@ -7,7 +7,6 @@ import com.kotlin.base.utils.YuanFenConverter
 import com.lc.base.ui.activity.BaseMvpActivity
 import com.lc.provider.common.ProviderConstant
 import com.lc.user.R
-import com.lc.user.common.OrderConstant
 import com.lc.user.data.protocol.Order
 import com.lc.user.injection.component.DaggerOrderComponent
 import com.lc.user.injection.module.OrderModule
@@ -19,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
 /**
  * Created by ${LiangCheng} on 2018/1/2.
  */
+//@Route(path = RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
 class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetailView {
 
     override fun injectComponent() {

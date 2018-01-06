@@ -2,11 +2,13 @@ package com.lc.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.kotlin.user.utils.UserPrefsUtils
 import com.lc.base.ext.enable
 import com.lc.base.ext.onClick
 import com.lc.base.ui.activity.BaseMvpActivity
+import com.lc.provider.PushProvider
 import com.lc.provider.router.RouterPath
 import com.lc.user.R
 import com.lc.user.data.protocol.UserInfo
@@ -22,6 +24,10 @@ import org.jetbrains.anko.startActivity
  */
 @Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
+
+    @Autowired(name = RouterPath.MessageCenter.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mPushProvider: PushProvider? = null
 
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(activityComponent)
@@ -58,7 +64,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     override fun onClick(v: View) {
         when (v.id) {
             R.id.mLoginBtn -> {
-                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(),
+                        mPushProvider?.getPushId() ?: "")
             }
             R.id.mForgetPwdTv -> {
                 startActivity<ForGetPwdActivity>()
