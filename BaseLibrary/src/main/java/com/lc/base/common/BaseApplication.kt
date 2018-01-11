@@ -12,6 +12,7 @@ import com.lc.base.injection.module.AppModule
  */
 open class BaseApplication : Application() {
     lateinit var appComponent: AppComponent
+
     override fun onCreate() {
         super.onCreate()
 

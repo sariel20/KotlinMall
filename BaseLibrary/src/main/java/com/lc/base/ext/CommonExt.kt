@@ -60,7 +60,7 @@ fun Button.enable(et: EditText, method: () -> Boolean) {
     ImageView加载网络图片
  */
 fun ImageView.loadUrl(url: String) {
-    GlideUtils.loadUrlImage(context, url, this)
+    GlideUtils.loadImage(context, url,  this)
 }
 
 /**

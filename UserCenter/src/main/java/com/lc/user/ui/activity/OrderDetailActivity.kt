@@ -2,10 +2,12 @@ package com.lc.user.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.eightbitlab.rxbus.Bus
 import com.kotlin.base.utils.YuanFenConverter
 import com.lc.base.ui.activity.BaseMvpActivity
 import com.lc.provider.common.ProviderConstant
+import com.lc.provider.router.RouterPath
 import com.lc.user.R
 import com.lc.user.data.protocol.Order
 import com.lc.user.injection.component.DaggerOrderComponent
@@ -18,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
 /**
  * Created by ${LiangCheng} on 2018/1/2.
  */
-//@Route(path = RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
+@Route(path = RouterPath.UserCenter.PATH_ORDER_DETAIL)
 class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetailView {
 
     override fun injectComponent() {

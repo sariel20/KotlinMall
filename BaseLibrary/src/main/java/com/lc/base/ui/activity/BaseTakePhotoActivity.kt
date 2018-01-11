@@ -130,10 +130,12 @@ open abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity()
         }
     }
 
-    /**
-     * 获取图片成功
-     */
+    /*
+            获取图片，成功回调
+         */
     override fun takeSuccess(result: TResult?) {
+        Log.d("TakePhoto", result?.image?.originalPath)
+        Log.d("TakePhoto", result?.image?.compressPath)
     }
 
     override fun takeCancel() {}
@@ -149,12 +151,12 @@ open abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity()
      */
     private fun createTempFile() {
         val tempFileName = "${DateUtils.curTime}.png"
-        if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
-            this.mTakeFile = File(Environment.getExternalStorageDirectory(), tempFileName)
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+            this.mTakeFile = File(Environment.getExternalStorageDirectory(),tempFileName)
             return
         }
 
-        this.mTakeFile = File(filesDir, tempFileName)
+        this.mTakeFile = File(filesDir,tempFileName)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

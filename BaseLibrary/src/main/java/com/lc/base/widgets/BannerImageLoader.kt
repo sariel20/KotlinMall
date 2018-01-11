@@ -10,6 +10,6 @@ import com.youth.banner.loader.ImageLoader
  */
 class BannerImageLoader : ImageLoader() {
     override fun displayImage(context: Context, path: Any, imageView: ImageView) {
-        GlideUtils.loadUrlImage(context, path.toString(), imageView)
+        GlideUtils.loadImage(context, path.toString(), imageView)
     }
 }

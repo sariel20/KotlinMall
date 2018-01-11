@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
     private val mMsgFragment by lazy { MessageFragment() }
     private val mMeFragment by lazy { MeFragment() }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

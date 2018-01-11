@@ -5,8 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
+import com.lc.provider.common.ProviderConstant
 import com.lc.provider.event.MessageBadgeEvent
+import com.lc.provider.router.RouterPath
+import org.json.JSONObject
 
 
 /**
@@ -14,7 +18,7 @@ import com.lc.provider.event.MessageBadgeEvent
  */
 class MessageReceiver : BroadcastReceiver() {
 
-    val TAG = "MessageReceiver"
+    private val TAG = "MessageReceiver"
 
     override fun onReceive(context: Context, intent: Intent) {
 
@@ -32,12 +36,12 @@ class MessageReceiver : BroadcastReceiver() {
                 Log.d(TAG, "接受到推送下来的通知")
             JPushInterface.ACTION_NOTIFICATION_OPENED == intent.action -> {
                 Log.d(TAG, "用户点击打开了通知")
-//                val extra = bundle.getString(JPushInterface.EXTRA_EXTRA)
-//                val json = JSONObject(extra)
-//                val orderId = json.getInt("orderId")
-//                ARouter.getInstance().build(RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
-//                        .withInt(ProviderConstant.KEY_ORDER_ID, orderId)
-//                        .navigation()
+                val extra = bundle.getString(JPushInterface.EXTRA_EXTRA)
+                val json = JSONObject(extra)
+                val orderId = json.getInt("orderId")
+                ARouter.getInstance().build(RouterPath.UserCenter.PATH_ORDER_DETAIL)
+                        .withInt(ProviderConstant.KEY_ORDER_ID, orderId)
+                        .navigation()
             }
             else -> Log.d(TAG, "Unhandled intent - " + intent.action!!)
         }

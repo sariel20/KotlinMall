@@ -81,12 +81,12 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
             val resultMap: Map<String, String> =
                     PayTask(this@CashRegisterActivity).payV2(result, true)
             uiThread {
-                if (resultMap["resultStatus"].equals("9000")) {
-                    /*支付成功，刷新订单状态*/
-                    mPresenter.payOrder(mOrderId)
-                } else {
-                    toast("支付失败${resultMap["memo"]}")
-                }
+                // if (resultMap["resultStatus"].equals("9000")) {
+                /*支付成功，刷新订单状态*/
+                mPresenter.payOrder(mOrderId)
+//                } else {
+//                    toast("支付失败${resultMap["memo"]}")
+//                }
             }
         }
     }

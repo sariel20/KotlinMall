@@ -34,7 +34,6 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
     private var mLocalFileUrl: String? = null
     //服务器获取图片地址
     private lateinit var mRemoteFileUrl: String
-
     /**
      * 用户信息
      */
@@ -55,7 +54,6 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
 
-
         initView()
         initData()
     }
@@ -72,7 +70,7 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
 
         if (mUserIcon != "") {
             mRemoteFileUrl = mUserIcon as String
-            GlideUtils.loadUrlImage(this, mUserIcon!!, mUserIconIv)
+            GlideUtils.loadImage(this, mUserIcon!!, mUserIconIv)
         }
         mUserNameEt.setText(mUserName)
         if (mUserGender == "0")
@@ -98,6 +96,14 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
         }
     }
 
+    /*
+            获取图片成功回调
+         */
+    override fun takeSuccess(result: TResult?) {
+
+        mLocalFileUrl = result?.image?.compressPath
+        mPresenter.getUploadToken()
+    }
 
     /**
      * 服务器返回图片地址
@@ -117,15 +123,5 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoVie
         toast("修改成功")
         UserPrefsUtils.putUserInfo(result)
     }
-
-    /**
-     * 获取图片成功
-     */
-    override fun takeSuccess(result: TResult?) {
-        mLocalFileUrl = result?.image?.originalPath
-        //上传图片凭证
-        mPresenter.getUploadToken()
-    }
-
 
 }

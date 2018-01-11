@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId
         ]
@@ -38,7 +38,7 @@ dependencies {
     compile project(':MessageCenter')
     compile project(':GoodsCenter')
     compile project(':PaySDK')
-    if(isUserModule.toBoolean()){
+    if (isUserModule.toBoolean()) {
         compile project(':UserCenter')
     }
 }
